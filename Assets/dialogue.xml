@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dialogue>
+  <Nodes>
+    <DialogueNode>
+      <NodeID>0</NodeID>
+      <Text>Hi! Welcome to my first TextAdventure game. I'm really excited to tell you more.</Text>
+      <Options>
+        <DialogueOption>
+          <Text>Yeah, tell me more!</Text>
+          <DestinationNodeID>1</DestinationNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>1</NodeID>
+      <Text>So you are going to choose you're own way through the game while the game unfolds the way you choose. Are you ready for that?</Text>
+      <Options>
+        <DialogueOption>
+          <Text>Sure! I'm so in for this.</Text>
+          <DestinationNodeID>2</DestinationNodeID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>No not really. Let me out.</Text>
+          <DestinationNodeID>3</DestinationNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>2</NodeID>
+      <Text>Good. Just wait some weeks for me to finish the first part.</Text>
+      <Options>
+        <DialogueOption>
+          <Text>Great. See ya!</Text>
+          <DestinationNodeID>-1</DestinationNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>3</NodeID>
+      <Text>Then leave. Fool.</Text>
+      <Options>
+        <DialogueOption>
+          <Text>Brrw.</Text>
+          <DestinationNodeID>-1</DestinationNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+  </Nodes>
+</Dialogue>
