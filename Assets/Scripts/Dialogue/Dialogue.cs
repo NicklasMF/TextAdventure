@@ -6,6 +6,25 @@ using System.Xml.Serialization;
 public class Dialogue {
 
     public List<DialogueNode> Nodes;
+	public List<Monster> Monsters;
+
+	public int GetIndexByNodeId(int nodeId) {
+		foreach (DialogueNode node in Nodes) {
+			if (node.NodeID == nodeId) {
+				return Nodes.IndexOf(node);
+			}
+		}
+		return -1;
+	}
+
+	public int GetIndexByMonsterId(int monsterId) {
+		foreach (Monster monster in Monsters) {
+			if (monster.MonsterID == monsterId) {
+				return Monsters.IndexOf(monster);
+			}
+		}
+		return -1;
+	}
 
     public void AddNode(DialogueNode node) {
         if (node == null) return;
@@ -36,6 +55,7 @@ public class Dialogue {
 
     public Dialogue() {
         Nodes = new List<DialogueNode>();
+		Monsters = new List<Monster>();
     }
 
     public static Dialogue LoadDialogue(string path) {

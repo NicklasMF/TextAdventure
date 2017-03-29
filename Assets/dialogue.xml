@@ -7,37 +7,47 @@
       <Options>
         <DialogueOption>
           <Text>Yeah, tell me more!</Text>
+          <DestinationNodeID>2</DestinationNodeID>
+        </DialogueOption>
+
+        <DialogueOption>
+          <Text>I sneek into the wood</Text>
           <DestinationNodeID>1</DestinationNodeID>
+        </DialogueOption>
+
+        <DialogueOption>
+          <Text>I attack the orc!</Text>
+          <MonsterID>1</MonsterID>
         </DialogueOption>
       </Options>
     </DialogueNode>
     <DialogueNode>
       <NodeID>1</NodeID>
-      <Text>So you are going to choose you're own way through the game while the game unfolds the way you choose. Are you ready for that?</Text>
-      <Options>
-        <DialogueOption>
-          <Text>Sure! I'm so in for this.</Text>
-          <DestinationNodeID>2</DestinationNodeID>
-        </DialogueOption>
-        <DialogueOption>
-          <Text>No not really. Let me out.</Text>
-          <DestinationNodeID>3</DestinationNodeID>
-        </DialogueOption>
-      </Options>
+      <Text>You see the wood in front of you and imagines the feeling of being safe. Your hearts beats like a gazelle.</Text>
+      <Conditions>
+		<Sneek>1</Sneek>
+		<MinimumRoll>4</MinimumRoll>
+		<ConditionText>To successfully sneek into the wood</ConditionText>
+		<WinNodeID>6</WinNodeID>
+		<LoseNodeID>7</LoseNodeID>
+      </Conditions>
     </DialogueNode>
     <DialogueNode>
       <NodeID>2</NodeID>
-      <Text>Good. Just wait some weeks for me to finish the first part.</Text>
-      <Options>
-        <DialogueOption>
-          <Text>Great. See ya!</Text>
-          <DestinationNodeID>-1</DestinationNodeID>
-        </DialogueOption>
-      </Options>
+      <Text>Good. Let's continue then!</Text>
+      <DestinationNodeID>3</DestinationNodeID>
     </DialogueNode>
+
     <DialogueNode>
       <NodeID>3</NodeID>
-      <Text>Then leave. Fool.</Text>
+      <Text>Cool. Let's take another question!</Text>
+      <DestinationNodeID>4</DestinationNodeID>
+    </DialogueNode>
+
+
+    <DialogueNode>
+      <NodeID>4</NodeID>
+      <Text>You won! Wuhu!</Text>
       <Options>
         <DialogueOption>
           <Text>Brrw.</Text>
@@ -45,5 +55,59 @@
         </DialogueOption>
       </Options>
     </DialogueNode>
+    <DialogueNode>
+      <NodeID>5</NodeID>
+      <Text>You lost you fool! Come on!</Text>
+      <Options>
+        <DialogueOption>
+          <Text>Brrw.</Text>
+          <DestinationNodeID>-1</DestinationNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>6</NodeID>
+      <Text>You succesfully made it. Now, make another throw!</Text>
+      <Conditions>
+        <MinimumRoll>2</MinimumRoll>
+        <ConditionText>Give it a go!</ConditionText>
+        <WinNodeID>100</WinNodeID>
+        <LoseNodeID>7</LoseNodeID>
+      </Conditions>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>7</NodeID>
+      <Text>You has been caught.</Text>
+      <Options>
+        <DialogueOption>
+          <Text>Brrw.</Text>
+          <DestinationNodeID>-1</DestinationNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
+
+
+    <DialogueNode>
+      <NodeID>100</NodeID>
+      <Text>Roll the die to see who attacks first!</Text>
+      <Options>
+        <DialogueOption>
+          <Text>Alright.</Text>
+          <DestinationNodeID>-1</DestinationNodeID>
+        </DialogueOption>
+      </Options>
+    </DialogueNode>
   </Nodes>
+
+  <Monsters>
+    <Monster>
+      <MonsterID>1</MonsterID>
+      <Name>Orc</Name>
+
+      <WinCondition>4</WinCondition>
+      <WinNodeId>4</WinNodeId>
+      <LostNodeId>5</LostNodeId>
+    </Monster>
+  </Monsters>
+
 </Dialogue>
