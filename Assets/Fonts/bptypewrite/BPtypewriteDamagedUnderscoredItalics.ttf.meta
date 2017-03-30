@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: bd20f116fd4a7485dbcd17ca006c3a44
+timeCreated: 1490798325
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: BPtypewriteDamagedUnderscored
+  fontNames:
+  - BPtypewriteDamagedUnderscored
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 9ecd87489cba64b83aa25965093356ab, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

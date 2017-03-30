@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
+[System.Serializable]
 public class DialogueNode {
 
     public int NodeID = -1;

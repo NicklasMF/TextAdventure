@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 746bf92cf1ddd48d5ac0ea5c68217a9b
+timeCreated: 1490798325
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: BPtypewriteStrikethrough
+  fontNames:
+  - BPtypewriteStrikethrough
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 25c8e6d7faeea4834b1503ae6e7cd927, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

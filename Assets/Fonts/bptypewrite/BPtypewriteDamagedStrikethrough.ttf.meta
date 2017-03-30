@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 0de1f48b3b8334e4185a4a02038a5aec
+timeCreated: 1490798325
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: BPtypewriteDamagedStrikethrough
+  fontNames:
+  - BPtypewriteDamagedStrikethrough
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Xml;
 
 public class NodeEditor : EditorWindow {
+
+
 
 	private List<BaseNode> windows = new List<BaseNode>();
 
@@ -143,6 +146,7 @@ public class NodeEditor : EditorWindow {
 			calcNode.windowRect = new Rect(mousePos.x, mousePos.y, 200, 150);
 
 			windows.Add(calcNode);
+
 
 		} else if (clb.Equals("makeTransition")) {
 			bool clickedOnWindow = false;

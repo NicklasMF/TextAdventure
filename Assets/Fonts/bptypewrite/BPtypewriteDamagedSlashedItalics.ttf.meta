@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 9c502ca3f7d804118a91b4d346298573
+timeCreated: 1490798325
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: BPtypewriteDamagedSlashed
+  fontNames:
+  - BPtypewriteDamagedSlashed
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 09700b954da27445883b34ae98aa6967, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

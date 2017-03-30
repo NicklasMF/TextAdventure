@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
+[System.Serializable]
 public class Dialogue {
 
     public List<DialogueNode> Nodes;
