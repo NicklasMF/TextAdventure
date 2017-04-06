@@ -8,7 +8,6 @@ public class Dialogue {
 
     public List<DialogueNode> Nodes;
 	public List<Monster> Monsters;
-	public List<Weapon> Weapons;
 
 	public int GetIndexByNodeId(int nodeId) {
 		foreach (DialogueNode node in Nodes) {
@@ -23,15 +22,6 @@ public class Dialogue {
 		foreach (Monster monster in Monsters) {
 			if (monster.MonsterID == monsterId) {
 				return Monsters.IndexOf(monster);
-			}
-		}
-		return -1;
-	}
-
-	public int GetIndexByWeaponId(int weaponId) {
-		foreach (Weapon weapon in Weapons) {
-			if (weapon.WeaponID == weaponId) {
-				return Weapons.IndexOf(weapon);
 			}
 		}
 		return -1;
@@ -56,12 +46,6 @@ public class Dialogue {
 		monster.MonsterID = Monsters.IndexOf(monster);
 	}
 
-	public void AddWeapon(Weapon weapon) {
-		if (weapon == null) return;
-
-		Weapons.Add(weapon);
-		weapon.WeaponID = Weapons.IndexOf(weapon);
-	}
 
 	public DialogueOption AddOption(DialogueNode node, bool _returnObj) {
 		if (_returnObj) {

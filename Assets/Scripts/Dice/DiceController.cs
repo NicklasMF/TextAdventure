@@ -79,10 +79,30 @@ public class DiceController : MonoBehaviour {
 
 		if (currentTurn == GetComponent<GameController>().player.Name) {
 			Destroy(die);
-			die = (GameObject) Instantiate(die20PlayerPrefab);
+			switch(dieNo) {
+			case 6:
+				die = (GameObject) Instantiate(die6PlayerPrefab);
+				break;
+			case 20:
+				die = (GameObject) Instantiate(die20PlayerPrefab);
+				break;
+			default:
+				Debug.LogError("Wrong dieNo for die");
+				break;
+			}
 		} else {
 			Destroy(die);
-			die = (GameObject) Instantiate(die20MonsterPrefab);
+			switch(dieNo) {
+			case 6:
+				die = (GameObject) Instantiate(die6MonsterPrefab);
+				break;
+			case 20:
+				die = (GameObject) Instantiate(die20MonsterPrefab);
+				break;
+			default:
+				Debug.LogError("Wrong dieNo for die");
+				break;
+			}
 			StartCoroutine(MonsterRollDie());
 		}
 
@@ -96,6 +116,7 @@ public class DiceController : MonoBehaviour {
     }
 
 	void RollFinish(int sum) {
+		HasRolledDie -= RollFinish;
 		rollComplete = true;
 	}
 

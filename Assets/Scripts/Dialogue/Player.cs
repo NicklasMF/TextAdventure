@@ -12,6 +12,8 @@ public class Player {
 	public int Life;
 	public int ArmourClass;
 
+	public List<Weapon> Weapons = new List<Weapon>();
+
 	public Player() {
 	}
 
@@ -37,9 +39,7 @@ public class Player {
 		int life;
 		if (PlayerPrefs.HasKey("Player_Life")) {
 			life = PlayerPrefs.GetInt("Player_Life");
-			Debug.Log(life + ":" + _sum);
 			Life += _sum;
-			Debug.Log(life);
 			PlayerPrefs.SetInt("Player_Life", life);
 		} else {
 			Debug.LogError("Liv kunne ikke opdateres.");
@@ -48,5 +48,10 @@ public class Player {
 
 	public int GetLife() {
 		return PlayerPrefs.GetInt("Player_Life");
+	}
+
+	public void AddWeapon(Weapon _weapon) {
+		Weapons.Add(_weapon);
+		PlayerPrefs.SetInt("Weapon_id"+_weapon.ID, 1);
 	}
 }

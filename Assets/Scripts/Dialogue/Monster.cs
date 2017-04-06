@@ -10,6 +10,7 @@ public class Monster {
 
 	public int Life;
 	public int ArmourClass;
+	public int WeaponID;
 	public int WinNodeId;
 	public int LoseNodeId;
 

@@ -61,7 +61,6 @@ public class XMLManager : MonoBehaviour {
 
 		DrawNodes();
 		DrawMonsters();
-		DrawWeapons();
 	}
 	#endregion
 	#region Draw
@@ -221,55 +220,6 @@ public class XMLManager : MonoBehaviour {
 		monPosY -= 170;
 		monLastY = monPosY;
 	}
-	void DrawWeapons() {
-		int weaPosX = -100;
-		int weaPosY = -20;
-
-		List<int> weaponArray = new List<int>();
-		foreach (Weapon weapon in dialogue.Weapons) {
-			weaponArray.Add(weapon.WeaponID);
-		}
-		weaponArray.Sort();
-
-		foreach(int currentWeapon in weaponArray) {
-			int currentIndex = dialogue.GetIndexByMonsterId(currentWeapon);
-
-			Weapon weapon = dialogue.Weapons[currentIndex];
-			GameObject go = Instantiate(WeaponPrefab, weaponContent);
-			go.transform.localPosition = new Vector3(weaPosX, weaPosY, 0);
-			go.name = "WeaponID: " + weapon.WeaponID;
-
-			go.GetComponent<XMLWeaponPrefab>().weaponId.text = weapon.WeaponID.ToString();
-			go.GetComponent<XMLWeaponPrefab>().name.text = weapon.Name.ToString();
-			go.GetComponent<XMLWeaponPrefab>().damage.text = weapon.Damage.ToString();
-			go.GetComponent<XMLWeaponPrefab>().criticalHit.text = weapon.CriticalHit.ToString();
-			go.GetComponent<XMLWeaponPrefab>().goldPieces.text = weapon.GoldPieces.ToString();
-
-			go.GetComponent<XMLWeaponPrefab>().weaponId.onEndEdit.AddListener(delegate {
-				ChangeInput(weapon, "WeaponID", go.GetComponent<XMLWeaponPrefab>().weaponId.text);
-			});
-			go.GetComponent<XMLWeaponPrefab>().name.onEndEdit.AddListener(delegate {
-				ChangeInput(weapon, "Name", go.GetComponent<XMLWeaponPrefab>().name.text);
-			});
-			go.GetComponent<XMLWeaponPrefab>().damage.onEndEdit.AddListener(delegate {
-				ChangeInput(weapon, "Damage", go.GetComponent<XMLWeaponPrefab>().damage.text);
-			});
-			go.GetComponent<XMLWeaponPrefab>().criticalHit.onEndEdit.AddListener(delegate {
-				ChangeInput(weapon, "CriticalHit", go.GetComponent<XMLWeaponPrefab>().criticalHit.text);
-			});
-			go.GetComponent<XMLWeaponPrefab>().goldPieces.onEndEdit.AddListener(delegate {
-				ChangeInput(weapon, "GoldPieces", go.GetComponent<XMLWeaponPrefab>().goldPieces.text);
-			});
-			go.GetComponent<XMLWeaponPrefab>().DeleteBtn.onClick.AddListener(delegate {
-				DeleteWeapon(go, weapon);
-			});
-
-		}
-
-		weaPosX = -100;
-		weaPosY -= 170;
-		weaLastY = weaPosY;
-	}
 
 	#endregion
 	#region Node
@@ -405,50 +355,7 @@ public class XMLManager : MonoBehaviour {
 	}
 
 	#endregion
-	#region Weapon
-	public void AddWeapon() {
-		Weapon weapon = new Weapon();
-		GameObject go = (GameObject) Instantiate(WeaponPrefab, weaponContent);
-		go.transform.localPosition = new Vector3(-100, weaLastY, 0);
-		dialogue.AddWeapon(weapon);
 
-		int id = GetEmptyID("weapon");
-		go.GetComponent<XMLWeaponPrefab>().weaponId.text = id.ToString();
-		dialogue.Weapons[dialogue.Weapons.Count - 1].WeaponID = id;
-
-		go.name = "WeaponID " + weapon.WeaponID;
-
-		go.GetComponent<XMLWeaponPrefab>().weaponId.text = weapon.WeaponID.ToString();
-		go.GetComponent<XMLWeaponPrefab>().weaponId.onEndEdit.AddListener(delegate {
-			ChangeInput(weapon, "WeaponID", go.GetComponent<XMLWeaponPrefab>().weaponId.text);
-		});
-		go.GetComponent<XMLWeaponPrefab>().name.onEndEdit.AddListener(delegate {
-			ChangeInput(weapon, "Name", go.GetComponent<XMLWeaponPrefab>().name.text);
-		});
-		go.GetComponent<XMLWeaponPrefab>().damage.onEndEdit.AddListener(delegate {
-			ChangeInput(weapon, "Damage", go.GetComponent<XMLWeaponPrefab>().damage.text);
-		});
-		go.GetComponent<XMLWeaponPrefab>().criticalHit.onEndEdit.AddListener(delegate {
-			ChangeInput(weapon, "CriticalHit", go.GetComponent<XMLWeaponPrefab>().criticalHit.text);
-		});
-		go.GetComponent<XMLWeaponPrefab>().goldPieces.onEndEdit.AddListener(delegate {
-			ChangeInput(weapon, "GoldPieces", go.GetComponent<XMLWeaponPrefab>().goldPieces.text);
-		});
-		go.GetComponent<XMLWeaponPrefab>().DeleteBtn.onClick.AddListener(delegate {
-			DeleteWeapon(go, weapon);
-		});
-
-
-		weaLastY -= 170;
-	}
-
-
-	void DeleteWeapon(GameObject go, Weapon weapon) {
-		dialogue.Weapons.Remove(weapon);
-		Destroy(go);
-	}
-
-	#endregion
 	#region ChangeInput
 
 	void ChangeInput(DialogueNode node, string type, string text) {
@@ -583,41 +490,6 @@ public class XMLManager : MonoBehaviour {
 		}
 	}
 
-	void ChangeInput(Weapon weapon, string type, string text) {
-		switch(type) {
-		case "WeaponID":
-			if (text == "") {
-				weapon.WeaponID = 0;
-			} else {
-				weapon.WeaponID = int.Parse(text);
-			}
-			break;
-		case "Name":
-			weapon.Name = text;
-			break;
-		case "Damage":
-			weapon.Damage = text;
-			break;
-		case "CriticalHit":
-			if (text == "") {
-				weapon.CriticalHit = 0;
-			} else {
-				weapon.CriticalHit = int.Parse(text);
-			}
-			break;
-		case "GoldPieces":
-			if (text == "") {
-				weapon.GoldPieces = 0;
-			} else {
-				weapon.GoldPieces = int.Parse(text);
-			}
-			break;
-		default:
-			print("ChangeInput gik galt med weaponID: " + weapon.WeaponID + ", " + type + ", " + text);
-			break;
-		}
-	}
-
 
 	#endregion
 	#region Navigation
@@ -665,19 +537,6 @@ public class XMLManager : MonoBehaviour {
 			}
 			monsterArray.Sort();
 			foreach(int i in monsterArray) {
-				if (x != i) {
-					break;
-				} else {
-					x++;
-				}
-			}
-		} else if (type == "weapon") {
-			List<int> weaponArray = new List<int>();
-			foreach (Weapon weapon in dialogue.Weapons) {
-				weaponArray.Add(weapon.WeaponID);
-			}
-			weaponArray.Sort();
-			foreach(int i in weaponArray) {
 				if (x != i) {
 					break;
 				} else {

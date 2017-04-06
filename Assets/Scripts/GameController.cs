@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour {
 	public Player player;
 
 	void Awake() {
-		DeletePlayerPrefs();
+		//DeletePlayerPrefs();
         SetDefaultPlayerPrefs();
 
 		GetComponent<NavigationController>().ShowDialogue();

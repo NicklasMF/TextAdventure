@@ -99,6 +99,7 @@
       <Name>Orc</Name>
       <Life>20</Life>
       <ArmourClass>10</ArmourClass>
+      <WeaponID>0</WeaponID>
       <WinNodeId>5</WinNodeId>
       <LoseNodeId>3</LoseNodeId>
     </Monster>

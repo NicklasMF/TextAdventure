@@ -33,6 +33,8 @@ public class BattleController : MonoBehaviour {
 		currentTurn = 0;
 		Initiave.Add(0);
 		Initiave.Add(monster.MonsterID);
+		DiceController.HasRolledDie += RollFinish;
+
 	}
 
 	void Update() {
@@ -84,11 +86,18 @@ public class BattleController : MonoBehaviour {
 			} else if (currentPhase == 1) {
 				duringWrapper.GetComponent<UIBattleDuring>().RoundText.text = "Damage Roll";
 				duringWrapper.GetComponent<UIBattleDuring>().ActionText.text = playing + " goes for damage";
+
+				if (playing == player.Name) {
+					int wea = player.Weapons[0].ID;
+					dieNo = gameController.GetComponent<WeaponDatabase>().GetDieByWeaponId(wea);
+				} else {
+					int wea = monster.WeaponID;
+					dieNo = gameController.GetComponent<WeaponDatabase>().GetDieByWeaponId(wea);
+				}
 			}
 		}
 		gameController.GetComponent<DiceController>().SetDieReady(playing, dieNo);
 
-		DiceController.HasRolledDie += RollFinish;
 	}
 
 	IEnumerator ShowRollText() {
@@ -98,7 +107,7 @@ public class BattleController : MonoBehaviour {
 	}
 
 	void RollFinish(int sum) {
-		DiceController.HasRolledDie -= RollFinish;
+		//DiceController.HasRolledDie -= RollFinish;
 
 		string whoHit;
 		if (Initiave.IndexOf(currentTurn) != 0) {
@@ -126,7 +135,6 @@ public class BattleController : MonoBehaviour {
 				} else {
 					Debug.Log("Player starter");
 				}
-				// Rearrange initiative ! //
 			}
 		} else {
 			switch (currentPhase) {
@@ -152,6 +160,7 @@ public class BattleController : MonoBehaviour {
 
 				break;
 			default:
+				Debug.LogError("CurrentPhase out of range");
 				break;
 			}
 		}

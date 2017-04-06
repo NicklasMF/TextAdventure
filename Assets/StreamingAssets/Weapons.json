@@ -1,0 +1,20 @@
+[
+	{
+		"id": 0,
+		"title": "Dagger",
+		"damage": {
+			"die": "1d6",
+			"criticalHit": 6
+		},
+		"goldPieces": 2
+	},
+	{
+		"id": 1,
+		"title": "Small Sword",
+		"damage": {
+			"die": "1d20",
+			"criticalHit": 20
+		},
+		"goldPieces": 10
+	}
+]
