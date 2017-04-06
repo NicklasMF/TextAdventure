@@ -9,6 +9,7 @@ public class DialogueNode {
 
     public string Text;
 	public int DestinationNodeID;
+	public int MonsterID;
 
     public List<DialogueOption> Options;
 

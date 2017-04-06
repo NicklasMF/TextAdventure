@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
+	public Player player;
+
 	void Awake() {
+		DeletePlayerPrefs();
         SetDefaultPlayerPrefs();
 
 		GetComponent<NavigationController>().ShowDialogue();
@@ -18,21 +21,20 @@ public class GameController : MonoBehaviour {
 	}
 
     void SetDefaultPlayerPrefs() {
-        if (!PlayerPrefs.HasKey("Player_Level")) {
-            PlayerPrefs.SetString("Player_Name", "Jamison");
-
-            PlayerPrefs.SetInt("Player_Level", 1);
-
-        }
+		player = new Player();
+		player.Awake();
     }
 
+	void DeletePlayerPrefs() {
+		PlayerPrefs.DeleteAll();
+	}
 
 	public void PrepareDice() {
 		GetComponent<NavigationController>().ShowDice();
 		//diceController.GetComponent<DiceController>().txtWinCondition = ""
-		//GetComponent<DiceController>().uiTouchPanel.GetComponent<Button>().onClick.AddListener(MoveOn);
 
-		GetComponent<DiceController>().SetDieReady();
+		GetComponent<NavigationController>().BeforeCondition();
+		GetComponent<DiceController>().SetDieReady("player", 20);
 	}
 
 
@@ -40,7 +42,7 @@ public class GameController : MonoBehaviour {
 		int nextNode;
 		int monsterId = GetComponent<NpcDialogue>().current_monster;
 		int monsterIndex = GetComponent<NpcDialogue>().dia.GetIndexByMonsterId(monsterId);
-		int winCondition = GetComponent<NpcDialogue>().dia.Monsters[monsterIndex].WinCondition;
+		int winCondition = GetComponent<NpcDialogue>().dia.Monsters[monsterIndex].ArmourClass;
 
 		string txt = "Du slog " + sum + ". ";
 

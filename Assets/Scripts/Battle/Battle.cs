@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Battle : MonoBehaviour {
+public class Battle {
 
-	// Use this for initialization
-	void Start () {
-		
+	public Monster monster;
+
+
+	public Battle(Monster _monster) {
+		monster = _monster;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }

@@ -8,6 +8,7 @@ public class Dialogue {
 
     public List<DialogueNode> Nodes;
 	public List<Monster> Monsters;
+	public List<Weapon> Weapons;
 
 	public int GetIndexByNodeId(int nodeId) {
 		foreach (DialogueNode node in Nodes) {
@@ -27,32 +28,49 @@ public class Dialogue {
 		return -1;
 	}
 
-    public void AddNode(DialogueNode node) {
-        if (node == null) return;
+	public int GetIndexByWeaponId(int weaponId) {
+		foreach (Weapon weapon in Weapons) {
+			if (weapon.WeaponID == weaponId) {
+				return Weapons.IndexOf(weapon);
+			}
+		}
+		return -1;
+	}
 
-        Nodes.Add(node);
-        node.NodeID = Nodes.IndexOf(node);
-    }
-	
-    public void AddOption(string text, DialogueNode node, DialogueNode dest) {
-        if (!Nodes.Contains(dest)) {
-            AddNode(dest);
-        }
+	public void AddNode(DialogueNode node) {
+		if (node == null) return;
 
-        if (!Nodes.Contains(node)) {
-            AddNode(node);
-        }
+		Nodes.Add(node);
+		node.NodeID = Nodes.IndexOf(node);
+	}
 
-        DialogueOption opt;
+	public void AddOption(DialogueNode node) {
+		DialogueOption opt = new DialogueOption();
+		node.Options.Add(opt);
+	}
 
-        if (dest == null) {
-            opt = new DialogueOption(text, -1);
-        } else {
-            opt = new DialogueOption(text, dest.NodeID);
-        }
+	public void AddMonster(Monster monster) {
+		if (monster == null) return;
 
-        node.Options.Add(opt);
-    }
+		Monsters.Add(monster);
+		monster.MonsterID = Monsters.IndexOf(monster);
+	}
+
+	public void AddWeapon(Weapon weapon) {
+		if (weapon == null) return;
+
+		Weapons.Add(weapon);
+		weapon.WeaponID = Weapons.IndexOf(weapon);
+	}
+
+	public DialogueOption AddOption(DialogueNode node, bool _returnObj) {
+		if (_returnObj) {
+			DialogueOption opt = new DialogueOption();
+			node.Options.Add(opt);
+			return opt;
+		}
+		return null;
+	}
 
     public Dialogue() {
         Nodes = new List<DialogueNode>();

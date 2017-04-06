@@ -42,7 +42,6 @@ public class NpcDialogue : MonoBehaviour {
     }
 
     public void RunDialogue(int _nodeid) {
-        //StartCoroutine(run(_nodeid));
 		RunNode(_nodeid);
     }
 
@@ -64,12 +63,12 @@ public class NpcDialogue : MonoBehaviour {
 		DialogueNode _node = dia.Nodes[dia.GetIndexByNodeId(_nodeid)];
 
 		// Der skal slås med en terning //
-		if (_node.Conditions != null) {
+		if (_node.Conditions != null && _node.Conditions.MinimumRoll > 0) {
 			uiGoingToThrow.SetActive(true);
 			uiDialogueWindow.SetActive(false);
 
 			uiGoingToThrow.GetComponent<GoingToThrow>().txtStory.text = _node.Text;
-			uiGoingToThrow.GetComponent<GoingToThrow>().txtStatus.text = _node.Conditions.ConditionText + ", you have to roll " + _node.Conditions.MinimumRoll + " or more.";
+			uiGoingToThrow.GetComponent<GoingToThrow>().txtStatus.text = _node.Conditions.ConditionText;
 			uiGoingToThrow.GetComponent<GoingToThrow>().btnRollDie.onClick.AddListener(delegate { PrepareForThrow(); });
 		} else {
 			uiGoingToThrow.SetActive(false);
@@ -78,24 +77,32 @@ public class NpcDialogue : MonoBehaviour {
 		}
 	}
 
+	void RunBattle(int _monsterID) {
+		Monster monster = dia.Monsters[dia.GetIndexByMonsterId(_monsterID)];
+		gameController.GetComponent<NavigationController>().BeforeBattle(monster);
+	}
+
 	void PrepareForThrow() {
 		DiceController.HasRolledDie += CheckResultOfThrow;
+		gameController.GetComponent<NavigationController>().uiCondition.GetComponent<UICondition>().txtWinCondition.text = dia.Nodes[dia.GetIndexByNodeId(current_node)].Conditions.ConditionText;
 		gameController.GetComponent<GameController>().PrepareDice();
 	}
 
 	void CheckResultOfThrow(int sum) {
 		DiceController.HasRolledDie -= CheckResultOfThrow;
 
+		gameController.GetComponent<NavigationController>().AfterCondition();
+		gameController.GetComponent<NavigationController>().uiCondition.GetComponent<UICondition>().txtSum.text = sum.ToString();
+
 		DialogueNode node = dia.Nodes[dia.GetIndexByNodeId(current_node)];
 		int winCase = node.Conditions.MinimumRoll;
-		Button toContinue = gameController.GetComponent<NavigationController>().uiBattle.GetComponent<UIBattle>().toContinue.GetComponent<Button>();
 		int nextNode = (sum >= winCase) ? node.Conditions.WinNodeID : node.Conditions.LoseNodeID;
+		Button toContinue = gameController.GetComponent<NavigationController>().uiCondition.GetComponent<UICondition>().ContinuePanel.GetComponent<Button>();
 		toContinue.onClick.AddListener(delegate { RunNode(nextNode); });
 	}
 
     void display_node(DialogueNode node) {
 		txtStory.GetComponent<Text>().text = node.Text;
-
         option_1.SetActive(false);
         option_2.SetActive(false);
         option_3.SetActive(false);
@@ -104,7 +111,11 @@ public class NpcDialogue : MonoBehaviour {
 			uiDialogueWindow.GetComponent<UIDialogue>().tapToContinue.SetActive(false);
 		} else {
 			uiDialogueWindow.GetComponent<UIDialogue>().tapToContinue.SetActive(true);
-			uiDialogueWindow.GetComponent<UIDialogue>().tapToContinue.GetComponent<Button>().onClick.AddListener(delegate { display_node(dia.Nodes[dia.GetIndexByNodeId(node.DestinationNodeID)]); });
+			if (node.MonsterID > 0) {
+				uiDialogueWindow.GetComponent<UIDialogue>().tapToContinue.GetComponent<Button>().onClick.AddListener(delegate { RunBattle(node.MonsterID); });
+			} else {
+				uiDialogueWindow.GetComponent<UIDialogue>().tapToContinue.GetComponent<Button>().onClick.AddListener(delegate { RunNode(node.DestinationNodeID); });
+			}
 		}
 
         for(int i = 0; i < node.Options.Count; i++) {

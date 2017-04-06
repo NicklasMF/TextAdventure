@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Dialogue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Nodes>
+    <DialogueNode>
+      <NodeID>0</NodeID>
+      <Text>Welcome to TextAdventure!</Text>
+      <DestinationNodeID>1</DestinationNodeID>
+      <MonsterID>0</MonsterID>
+      <Options />
+      <Conditions>
+        <Sneek>0</Sneek>
+        <MinimumRoll>0</MinimumRoll>
+        <ConditionText />
+        <WinNodeID>0</WinNodeID>
+        <LoseNodeID>0</LoseNodeID>
+      </Conditions>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>2</NodeID>
+      <Text>Yeah, that's my man!</Text>
+      <DestinationNodeID>-1</DestinationNodeID>
+      <MonsterID>0</MonsterID>
+      <Options>
+        <DialogueOption>
+          <Text>Easy!</Text>
+          <DestinationNodeID>4</DestinationNodeID>
+          <MonsterID>0</MonsterID>
+        </DialogueOption>
+        <DialogueOption>
+          <Text>Well yeah. That went well!</Text>
+          <DestinationNodeID>5</DestinationNodeID>
+          <MonsterID>0</MonsterID>
+        </DialogueOption>
+      </Options>
+      <Conditions>
+        <Sneek>0</Sneek>
+        <MinimumRoll>0</MinimumRoll>
+        <WinNodeID>0</WinNodeID>
+        <LoseNodeID>0</LoseNodeID>
+      </Conditions>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>1</NodeID>
+      <Text>Let's start by seeing if you can roll a die like a man!</Text>
+      <DestinationNodeID>0</DestinationNodeID>
+      <MonsterID>1</MonsterID>
+      <Options />
+      <Conditions>
+        <Sneek>0</Sneek>
+        <MinimumRoll>0</MinimumRoll>
+        <ConditionText />
+        <WinNodeID>0</WinNodeID>
+        <LoseNodeID>0</LoseNodeID>
+      </Conditions>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>3</NodeID>
+      <Text>Nope. You're weak!</Text>
+      <DestinationNodeID>0</DestinationNodeID>
+      <MonsterID>0</MonsterID>
+      <Options />
+      <Conditions>
+        <Sneek>0</Sneek>
+        <MinimumRoll>0</MinimumRoll>
+        <WinNodeID>0</WinNodeID>
+        <LoseNodeID>0</LoseNodeID>
+      </Conditions>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>5</NodeID>
+      <Text>You're calm and nice. I like you!</Text>
+      <DestinationNodeID>0</DestinationNodeID>
+      <MonsterID>0</MonsterID>
+      <Options />
+      <Conditions>
+        <Sneek>0</Sneek>
+        <MinimumRoll>0</MinimumRoll>
+        <WinNodeID>0</WinNodeID>
+        <LoseNodeID>0</LoseNodeID>
+      </Conditions>
+    </DialogueNode>
+    <DialogueNode>
+      <NodeID>4</NodeID>
+      <Text>Easy pal. It wasn't that great.</Text>
+      <DestinationNodeID>0</DestinationNodeID>
+      <MonsterID>0</MonsterID>
+      <Options />
+      <Conditions>
+        <Sneek>0</Sneek>
+        <MinimumRoll>0</MinimumRoll>
+        <WinNodeID>0</WinNodeID>
+        <LoseNodeID>0</LoseNodeID>
+      </Conditions>
+    </DialogueNode>
+  </Nodes>
+  <Monsters>
+    <Monster>
+      <MonsterID>1</MonsterID>
+      <Name>Orc</Name>
+      <Life>20</Life>
+      <ArmourClass>10</ArmourClass>
+      <WinNodeId>5</WinNodeId>
+      <LoseNodeId>3</LoseNodeId>
+    </Monster>
+  </Monsters>
+  <Weapons>
+    <Weapon>
+      <WeaponID>0</WeaponID>
+      <Name>Dagger</Name>
+      <Damage>1d20</Damage>
+      <CriticalHit>20</CriticalHit>
+      <GoldPieces>1</GoldPieces>
+    </Weapon>
+  </Weapons>
+</Dialogue>
